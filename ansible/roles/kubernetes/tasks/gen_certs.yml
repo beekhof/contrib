@@ -31,6 +31,7 @@
   environment:
     MASTER_IP: "{{ kube_cert_ip }}"
     MASTER_NAME: "{{ inventory_hostname }}"
+    MASTERS_ALL: "{% for node in groups['masters'] %}DNS:{{ node }}{% if not loop.last %},{% endif %}{% endfor %}"
     DNS_DOMAIN: "{{ dns_domain }}"
     SERVICE_CLUSTER_IP_RANGE: "{{ kube_service_addresses }}"
     CERT_DIR: "{{ kube_cert_dir }}"
